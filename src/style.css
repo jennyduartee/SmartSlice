@@ -1,0 +1,93 @@
+/* body {
+    background-color: #557126;
+    margin: 0; 
+    padding: 0; 
+    height: 100vh; 
+    overflow: hidden; 
+  }*/
+  
+/* background green color */
+.loginContainer {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #557126;  
+  }
+  
+  /* image centering */
+  .imageContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* image size */
+  .imageContainer img {
+    max-width: calc(4 * 300px);
+    max-height: calc(4 * 300px);
+  }
+
+  .logoContainer img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  /* login white box */
+  .loginBox {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 80%; 
+    width: 300px; 
+    z-index: 0;
+    border-top: 4px solid #557126;
+  }
+  
+  @media (max-width: 768px) {
+    .loginBox {
+      width: 100%; 
+    }
+  }
+  
+  .loginButton {
+    background-color: #557126; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+  }
+
+  .inputField {
+    display: block; 
+    margin-bottom: 10px; /* space between fields */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .googleButton {
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center; /* to center horizontally */
+  }
+  
+  .googleLogo {
+    width: 13px;  
+    height: 13px;
+    margin-right: 10px;
+  }
+  

@@ -1,0 +1,65 @@
+.homeContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000000d8;
+    border-bottom: 2px solid white;
+
+  }
+  
+  .welcome {
+    font-size: 24px;
+    font-weight: bold;
+    font-weight: lighter;
+    color: rgb(255, 255, 255);
+  }
+  
+  .tabs {
+    display: flex;
+  }
+  
+  .tab {
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .tab:hover {
+    background-color: #000000;
+  }
+  
+  .homeImageContainer {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+  }
+
+  .homeImageContainer img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .welcome img {
+    padding-right: 10px;
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  .welcomeUser {
+    color: #ffffff;
+    background-color: #557126;
+    transform: translate(45%, 55%);
+  }
+  .homeScreenContainer{
+    background-color: #557126;
+    height: 100vh;
+  }
