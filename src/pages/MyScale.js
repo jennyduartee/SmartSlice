@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 import '../homeTab.css';
 //add import for HTTP requests
 
 const MyScale = () => {
   //HTTP requests
-  
+  const [profileData, setProfileData] = useState(null)
+
+  function getData() {
+    axios({
+      method: "GET",
+      url:"/profile",
+    })
+    .then((response) => {
+      const res =response.data
+      setProfileData(({
+        profile_name: res.name,
+        about_me: res.about}))
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        }
+    })}
 
   const handleAddToFoodLog = () => {
     // logic to add the displayed information to the food log
@@ -24,6 +43,14 @@ const MyScale = () => {
           <Link to="/myscale" className="tab">My Scale</Link>
           <Link to="/myprofile" className="tab">My Profile</Link>
         </div>
+      </div>
+      <div className='GetDataButtion'>
+        <p>To get your profile details: </p><button onClick={getData}>Click me</button>
+        {profileData && <div>
+              <p>Profile name: {profileData.profile_name}</p>
+              <p>About me: {profileData.about_me}</p>
+            </div>
+        }
       </div>
       <div className="MyScaleContainer">
         <h2>My Scale</h2>
