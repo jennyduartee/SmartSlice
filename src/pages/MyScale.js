@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import '../homeTab.css';
@@ -17,7 +17,9 @@ const MyScale = () => {
       const res =response.data
       setProfileData(({
         profile_name: res.name,
-        about_me: res.about}))
+        about_me: res.about,
+        weight: res.weight,
+        label: res.label})) //
     }).catch((error) => {
       if (error.response) {
         console.log(error.response)
@@ -25,13 +27,35 @@ const MyScale = () => {
         console.log(error.response.headers)
         }
     })}
+  
+  useEffect(() => {
+    // Function to fetch profile data from the Flask API
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get('/profile');
+        setProfileData(response.data);
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+      }
+    };
+
+    // Call the function to fetch profile data when the component mounts
+    fetchProfileData();
+
+    //checks every 5 sec
+    //const interval = setInterval(fetchProfileData, 5000);//mew
+
+    // Cleanup function to clear interval
+    //return () => clearInterval(interval);//new 
+  }, []); // Empty dependency array means this effect runs only once after the first render
+
 
   const handleAddToFoodLog = () => {
     // logic to add the displayed information to the food log
   };
 
   return (
-    <div>
+    <div className='homeScreenContainer'> 
       <div className="homeContainer">
         <div className="welcome">
           SmartSlice Station
@@ -56,10 +80,11 @@ const MyScale = () => {
         <h2>My Scale</h2>
         <div>
           <label htmlFor="weight">Weight:</label>
-          {/* get weight */}
+          <span> {profileData && profileData.weight}</span>
         </div>
         <div>
           <label htmlFor="food">Food:</label>
+          <span> {profileData && profileData.label}</span>          
           {/* get food */}
         </div>
         <div>

@@ -8,6 +8,7 @@ import FoodLog from './pages/FoodLog';
 import NutritionalValue from './pages/NutritionalValue';
 import MyScale from './pages/MyScale';
 import MyProfile from './pages/MyProfile';
+import RecipeResults from './pages/RecipleResults';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/nutritionalvalue" element={<NutritionalValue />} />
           <Route path="/myscale" element={<MyScale />} />
           <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/reciperesults" element={<RecipeResults />} />
         </Routes>
       </Router>
   );

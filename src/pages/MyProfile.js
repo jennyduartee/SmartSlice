@@ -28,17 +28,19 @@ const MyProfile = () => {
         <div className="tabs">
           <Link to="/home" className="tab">Home</Link>
           <Link to="/foodlog" className="tab">Food Log</Link>
-          <Link to="/nutritionalvalue" className="tab">Nutritional Value</Link>
+          {/*<Link to="/nutritionalvalue" className="tab">Nutritional Value</Link> */}
           <Link to="/myscale" className="tab">My Scale</Link>
           <Link to="/myprofile" className="tab">My Profile</Link>
         </div>
       </div>
-      <button onClick={handleLogOut} className="LogoutButton">
-        Log Out
-      </button>
-      <button onClick={handleChangeProfile} className="ChangeProfile">
-        Change Profile Information
-      </button>
+      <div className="profileBox">
+        <button onClick={handleLogOut} className="LogoutButton">
+          Log Out
+        </button>
+        <button onClick={handleChangeProfile} className="ChangeProfile">
+          Change Profile Information
+        </button>
+      </div>
     </div>
   );
 };
