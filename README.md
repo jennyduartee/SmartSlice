@@ -82,7 +82,7 @@ For mac/unix users: source env/bin/activate
 
 ### pip install flask
 
-### pip install flask
+### pip install python -dotenv
 
 ### flask run 
 
