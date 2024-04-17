@@ -68,3 +68,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+---- Backend ----
+To run the Flask terminal (make sure to enter the environment each time) and cd into backend:
+
+For mac/unix users: python3 -m venv env
+### For windows users: py -m venv env
+
+For mac/unix users: source env/bin/activate
+### For windows users: .\env\Scripts\activate
+
+### pip install flask
+
+### pip install flask
+
+### flask run 
+
+---- Frontend --- 
+To run React, cd into SmartSlice-main:
+
+### npm start
+
+
+
+
+
+
