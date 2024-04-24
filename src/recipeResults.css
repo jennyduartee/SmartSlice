@@ -72,3 +72,18 @@ body {
   .recipeDetails a:hover {
     background-color: #829365;
   }
+
+  .recipeDetails button {
+    text-align: center;
+    background-color: #557126;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border-color: #55712600;
+  }
+
+  .recipeDetails button:hover {
+    background-color: #829365;
+  } 

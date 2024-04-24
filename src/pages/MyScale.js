@@ -2,34 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import '../homeTab.css';
-//add import for HTTP requests
 
 const MyScale = () => {
-  //HTTP requests
-  const [profileData, setProfileData] = useState(null)
+  const [profileData, setProfileData] = useState(null);
+  const [calories, setCalories] = useState(null); // State variable for calories
 
-  function getData() {
-    axios({
-      method: "GET",
-      url:"/profile",
-    })
-    .then((response) => {
-      const res =response.data
-      setProfileData(({
-        profile_name: res.name,
-        about_me: res.about,
-        weight: res.weight,
-        label: res.label})) //
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-        }
-    })}
-  
   useEffect(() => {
-    // Function to fetch profile data from the Flask API
     const fetchProfileData = async () => {
       try {
         const response = await axios.get('/profile');
@@ -39,20 +17,29 @@ const MyScale = () => {
       }
     };
 
-    // Call the function to fetch profile data when the component mounts
     fetchProfileData();
+  }, []);
 
-    //checks every 5 sec
-    //const interval = setInterval(fetchProfileData, 5000);//mew
+  useEffect(() => {
+    const fetchNutritionData = async () => {
+      if (!profileData) return; // Exit if profile data is not available
+      //API Key/ID for Nutritional Info from Edamam
+      const appKey = '4ddf16b1d5325d099916dc226fc4bae3';
+      const appId = 'f6c54d16';
+      const weightInGrams = `${profileData.weight}g`;
+      const url = `https://api.edamam.com/api/nutrition-data?app_id=${appId}&app_key=${appKey}&ingr=${encodeURIComponent(profileData.label)},${weightInGrams}&type=public`;
 
-    // Cleanup function to clear interval
-    //return () => clearInterval(interval);//new 
-  }, []); // Empty dependency array means this effect runs only once after the first render
+      try {
+        const response = await axios.get(url);
+        const nutritionData = response.data; // set the response to this 
+        setCalories(nutritionData.calories); // Set calories to the state variable
+      } catch (error) {
+        console.error('Error fetching nutrition data:', error);
+      }
+    };
 
-
-  const handleAddToFoodLog = () => {
-    // logic to add the displayed information to the food log
-  };
+    fetchNutritionData();
+  }, [profileData]); // Fetch nutrition data when profileData changes
 
   return (
     <div className='homeScreenContainer'> 
@@ -63,37 +50,35 @@ const MyScale = () => {
         <div className="tabs">
           <Link to="/home" className="tab">Home</Link>
           <Link to="/foodlog" className="tab">Food Log</Link>
-          <Link to="/nutritionalvalue" className="tab">Nutritional Value</Link>
           <Link to="/myscale" className="tab">My Scale</Link>
           <Link to="/myprofile" className="tab">My Profile</Link>
         </div>
       </div>
-      <div className='GetDataButtion'>
-        <p>To get your profile details: </p><button onClick={getData}>Click me</button>
-        {profileData && <div>
-              <p>Profile name: {profileData.profile_name}</p>
-              <p>About me: {profileData.about_me}</p>
-            </div>
-        }
+      <div className='homeSpace'></div>
+      <div className='scaleBox'>
+        <div className='space'></div>
+        <div className="MyScaleContainer" >
+          <h1>My Scale</h1>
+          <div>
+            <big><label htmlFor="weight" >Weight: </label> 
+            <span> {profileData && profileData.weight}</span>
+            <label > g</label></big>
+          </div>
+          <div className='space'></div>
+          <div>
+            <big><label htmlFor="food">Food:</label>
+            <span> {profileData && profileData.label}</span></big>          
+          </div>
+          <div className='space'></div>
+          <div>
+            <big><label htmlFor="calories">Calories:</label>
+            <span>{calories}</span>
+            <label > cal</label></big>
+          </div>
+          <div className='space'></div>
+        </div>
       </div>
-      <div className="MyScaleContainer">
-        <h2>My Scale</h2>
-        <div>
-          <label htmlFor="weight">Weight:</label>
-          <span> {profileData && profileData.weight}</span>
-        </div>
-        <div>
-          <label htmlFor="food">Food:</label>
-          <span> {profileData && profileData.label}</span>          
-          {/* get food */}
-        </div>
-        <div>
-          <label htmlFor="calories">Calories:</label>
-          {/* get calories */}
-        </div>
-        <button onClick={handleAddToFoodLog}>Add to Food Log</button>
-      </div>
-    </div>
+    </div>  
   );
 };
 

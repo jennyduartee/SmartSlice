@@ -3,6 +3,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 
+//Firebase key and info for Realtime Database 
+
 const firebaseConfig = {
     apiKey: "AIzaSyD8kn7vuT9GsDbYAJRImizG4JyxqKc-0Jg",
     authDomain: "smartslice-station.firebaseapp.com",
@@ -22,4 +24,3 @@ if (!firebase.apps.length) {
   const firestore = firebase.firestore();
   
   export { auth, firestore };
-  
